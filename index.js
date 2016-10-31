@@ -16,26 +16,21 @@ app.get('/',function (req, res) {
 
 var roomno=1;
 io.sockets.on('connection',function (socket) {
-    console.log()
-    socket.on('req', function () {
-    console.log('ramdom');
-    // io.sockets.emit('displayUser',data);
-    });
 
     socket.on('send username',function (data, callback) {   //receive user name -> check duplicate
-        console.log(data);
+        console.log(data + " is connecting");
         if(playerName.indexOf(data)!=-1) {
             callback(false);
         }else{
             callback(true);
-            console.log("receive user");
             socket.name = data;  //push name[]
-
             playerName.push(socket.name);
+
             socket.emit('welcomeuser',"Welcome "+data);
             io.sockets.emit('listOfUser',playerName);  //update
             socket.broadcast.emit('broadcast',socket.name +' has joined the chat');
-            io.sockets.emit('broadcast', 'there are '+playerName.length+' online');
+            io.sockets.emit('broadcast', 'there are '+playerName.length+' users online');
+            console.log('# of users online : '+playerName.length);
             client.user = socket.name; //keep name of client in server
         }
 
@@ -44,7 +39,7 @@ io.sockets.on('connection',function (socket) {
    // socket.broadcast.emit('broadcast',playerName +' has joined the chat');
 
     socket.on('send msg',function (data) {
-        console.log('data');
+        console.log(socket.name + " : "+ data);
         io.sockets.emit('new msg',{msg:data, nick: socket.name});
     });
     send();
@@ -86,7 +81,6 @@ io.sockets.on('connection',function (socket) {
         } else {
 
         }
-        //ello
         //   socket.leave("room-"+roomno);
     });
 
@@ -96,7 +90,7 @@ io.sockets.on('connection',function (socket) {
         playerName.splice(playerName.indexOf(socket.name),1);
         io.sockets.emit('listOfUser',playerName);
         io.sockets.emit('broadcast', 'there are '+playerName.length+' online');
-
+        console.log('# of users online : '+playerName.length);
     });
 });
 

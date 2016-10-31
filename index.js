@@ -86,6 +86,7 @@ io.sockets.on('connection',function (socket) {
         } else {
 
         }
+        //ello
         //   socket.leave("room-"+roomno);
     });
 

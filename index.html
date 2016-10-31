@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Netcentric</title>
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>
+        h1{
+            font-family: "Raleway", sans-serif;
+            color: white;
+            text-align: right;
+            font-size: 25px;
+        }
+        h2,h3{
+            font-family: "Raleway", sans-serif;
+            color: white;
+            text-align: center;
+            font-size: 80px;
+        }
+
+        p {
+            font-family: "Raleway", sans-serif;
+            font-size: 26px;
+            text-align: center;
+        }
+
+        body, html {height: 100%}
+        body   {
+            background-image : url('cb70161a4d89947f93a606f8b6ba7026.gif');
+            background-attachment : fixed;
+            background-repeat: no-repeat;
+            background-color: moccasin;
+            min-height: 100%;
+            background-position: center;
+            background-size: cover;
+        }
+
+        #play{
+            background-image: url("4T9od4dqc.png");
+            background-size: 50px 50px;
+            background-repeat: no-repeat;
+            width: 50px;
+            height: 50px;
+        }
+        button{
+            background: transparent;
+            border-color: transparent;
+        }
+
+        #name{
+            border:solid #456879;
+            height: 30px;
+            width: 230px;
+        }
+
+        /* CHAT BOX */
+        body {  font:15px arial;  color: #222;  text-align:center;  }
+        form, p, span {  margin:0;  padding:0; }
+        input { font:15px arial; }
+
+        a {
+            color: #7b6022;
+            text-decoration:none; }
+        a:hover { text-decoration:underline; }
+
+        #wrapper, #loginform {
+            margin:0 auto;
+            padding-bottom:25px;
+            background: rgba(251, 211, 132, 0.46);
+            width:650px;
+            border:1px solid rgba(251, 211, 132, 0.46) }
+
+        #loginform { padding-top:18px; }
+
+        #loginform p { margin: 5px; }
+
+        #chatbox {
+            text-align:left;
+            margin: 9px;
+            margin-bottom:25px;
+            padding:10px;
+            background:#fff;
+            height:270px;
+            width:500px;
+            border:1px solid #cd9f4a;
+            float:left;
+        }
+
+        #listofplayer {
+            text-align:left ;
+            margin: 9px;
+            margin-bottom:25px;
+            padding:10px;
+            background:#fff;
+            height:270px;
+            width:112px;
+            border:1px solid #cd9f4a;
+            float:right;
+
+        }
+
+        #usermsg {
+            width:572px;
+            border:1px solid #cd9f4a; }
+
+        #submit { width: 60px; }
+
+        .error { color: #ff0000; }
+
+        #menu { padding:12.5px 25px 12.5px 25px; }
+        .welcome { float:left; }
+        .logout { float:right; }
+        .msgln { margin:0 0 2px 0; }
+
+        /*Countdowntimer*/
+
+        #clockdiv{
+            font-family: sans-serif;
+            color: #fff;
+            display: inline-block;
+            font-weight: 100;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        #clockdiv > div{
+            padding: 10px;
+            border-radius: 3px;
+            background: #b5b5b5;
+            display: inline-block;
+        }
+
+        #clockdiv div > span{
+            padding: 15px;
+            border-radius: 3px;
+            background: #646464;
+            display: inline-block;
+        }
+
+        .smalltext{
+            padding-top: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+<!-- First page -->
+<div class="ex">
+    <header class="w3-container w3-padding-32 w3-center w3-opacity w3-margin-bottom">
+        <img id="image" src="dodecahedron" style="background-size: 100%">
+        <h2><b>IQ180</b></h2>
+        <p><b>INSERT YOUR NAME</b></p>
+        <input id="username" type="text">
+        <br>
+
+        <button class="hide" id="play"></button>
+</div>
+
+<!-- Chat room -->
+<div class="ex2">
+    <header class="w3-container w3-padding-32 w3-center w3-opacity w3-margin-bottom">
+        <h2>CHAT ROOM</h2>
+        <div>
+        </div>
+
+        <div id="wrapper">
+            <div id="menu">
+                <p class='welcome' id="WelcomeUser"><b></b></p>
+                <p class="logout"><a id="exit" href="#">Exit Chat</a></p>
+                <div style="clear:both"></div>
+            </div>
+
+            <div id="chatbox"></div>
+            <div id="listofplayer"></div>
+            <form name="message" action="">
+                <input name="usermsg" type="text" id="usermsg" size="63" />
+                <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
+            </form>
+            <button class="hide" id="play"></button>
+        </div>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            // jQuery Document
+            $(document).ready(function(){
+
+            });
+        </script>
+</div>
+
+<!-- MODE -->
+<div class="ex3">
+<header class="w3-container w3-padding-32 w3-center w3-opacity w3-margin-bottom">
+    <h1>Welcome,</h1>
+    <h2>MODE</h2>
+    <div>
+        <a href="javascript:void(0)" class="w3-btn w3-btn-block w3-hover-blue-grey w3-padding-16">Single Player</a>
+        <a href="javascript:void(0)" class="w3-btn w3-btn-block w3-hover-teal w3-padding-16" id='multi'>Multi Player</a>
+        <a href="javascript:void(0)" class="w3-btn w3-btn-block w3-hover-light-blue w3-padding-16">Challenging</a>
+        <button class="hide" id="play"></button>
+    </div>
+
+</header>
+</div>
+
+<!-- LEVEL -->
+<div class="ex4">
+<header class="w3-container w3-padding-32 w3-center w3-opacity w3-margin-bottom">
+    <h1>Welcome,</h1>
+    <h2>LEVEL</h2>
+    <div>
+        <a href="javascript:void(0)" class="w3-btn w3-btn-block w3-hover-blue-grey w3-padding-16">Easy</a>
+        <a href="javascript:void(0)" class="w3-btn w3-btn-block w3-hover-teal w3-padding-16">Medium</a>
+        <a href="javascript:void(0)" class="w3-btn w3-btn-block w3-hover-light-blue w3-padding-16">Hard</a>
+        <button class="hide" id="play"></button>
+    </div>
+
+</header>
+</div>
+
+<!-- GAME -->
+<div class="ex5">
+    <header class="w3-container w3-padding-32 w3-center w3-opacity w3-margin-bottom">
+        <h1>Countdown Clock</h1>
+        <div id="clockdiv">
+            <div>
+                <span class="minutes"></span>
+                <div class="smalltext">Minutes</div>
+            </div>
+            <div>
+                <span class="seconds"></span>
+                <div class="smalltext">Seconds</div>
+            </div>
+        </div>
+        <script src="timer.js"></script>
+
+    </header>
+
+</div>
+
+
+</body>
+
+    </header>
+
+</div>
+
+</body>
+
+</html>
+
+<script src="index.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="http://www.w3schools.com/jquery/jquery_ref_effects.asp"></script>
+
+<script>
+    var socket = io.connect();
+    var $setName = $('#setName');
+    var $username = $('#username');
+    var $name = $('');
+    var $q = $('#q');
+    var $listofplayer = $('#listofplayer');
+    var $error = $('#error');
+    var $room = $('#room');
+    var $WelcomeUser = $('#WelcomeUser');
+    var $submitmsg = $('#submitmsg');
+    var $usermsg = $('#usermsg');
+    var $chatbox = $('#chatbox');
+    var $multi = $('#multi');
+
+    //page 1
+    $(document).ready(function(){
+        $(".ex2").hide();
+        $(".ex3").hide();
+        $(".ex4").hide();
+        $(".ex5").hide();
+
+        $(".ex .hide").click(function() {
+            socket.emit('send username', $username.val(), function (data) {  //send username + detect duplicate user
+                if (!data) {
+                    $error.html("duplicate username");
+                    window.alert("duplicate user");
+
+                } else {
+                    $error.hide();
+                    $(".ex").hide("slow");
+                    $(".ex2").show();
+
+                }
+            })
+
+        });
+    });
+
+    socket.on('welcomeuser',function(data){
+        console.log(data);
+        $WelcomeUser.html(data);
+
+        socket.on('broadcast',function (data) {
+            console.log(data);
+            $chatbox.append('<i>'+ data +'<br/>');
+        })
+    });
+
+
+    $submitmsg.click(function(e) {
+                e.preventDefault();
+                socket.emit('send msg', $usermsg.val());
+                $usermsg.val(' ');
+            }
+        );
+
+    socket.on('new msg',function (data) {
+        $chatbox.append('<b>' + data.nick + ':</b>' + data.msg + "<br/>");
+        console.log(data.nick);
+    })
+
+    socket.on('listOfUser',function (data) {   //add list of online user
+        var list = 'Online :<br/>';
+        for(i=0;i<data.length;i++){
+            list += data[i]+ '<br/>'
+        }
+        $listofplayer.html(list);
+    });
+
+    //chat page
+    $(".ex2 .hide").click(function(){
+        $(this).parents(".ex2").hide("slow");
+        $(".ex3").show();
+
+    });
+
+    //game
+    $(".ex3 .hide").click(function(){
+        $(this).parents(".ex3").hide("slow");
+        $(".ex4").show();
+    });
+
+    $multi.click(function(){
+        console.log('multiplayer mode');
+        socket.emit('pair');
+
+    });
+
+    socket.on('connectToRoom',function(data){
+        $(".ex3").hide("slow");
+        $(".ex5").show();
+
+    });
+
+    $(".ex4 .hide").click(function(){
+        $(this).parents(".ex4").hide("slow");
+        $(".ex5").show();
+    });
+</script>
+
+
+
+</body>
+</html>

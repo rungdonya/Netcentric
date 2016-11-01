@@ -2,6 +2,7 @@
  * Created by apple on 10/30/2016 AD.
  */
 function getTimeRemaining(endtime) {
+
     var t = Date.parse(endtime) - Date.parse(new Date());
     var seconds = Math.floor((t / 1000) % 60);
     var minutes = Math.floor((t / 1000 / 60) % 60);
@@ -12,10 +13,12 @@ function getTimeRemaining(endtime) {
     };
 }
 
+
 function initializeClock(id, endtime) {
     var clock = document.getElementById(id);
     var minutesSpan = clock.querySelector('.minutes');
     var secondsSpan = clock.querySelector('.seconds');
+
 
     function updateClock() {
         var t = getTimeRemaining(endtime);
@@ -25,6 +28,7 @@ function initializeClock(id, endtime) {
 
         if (t.total <= 0) {
             clearInterval(timeinterval);
+            window.alert("ออกไปปปปปป");
         }
     }
 
@@ -32,5 +36,9 @@ function initializeClock(id, endtime) {
     var timeinterval = setInterval(updateClock, 1000);
 }
 
-var deadline = new Date(Date.parse(new Date()) + 1 * 60 * 1000);
-initializeClock('clockdiv', deadline);
+function start() {
+    var timeInMinutes = 1;
+    var currentTime = Date.parse(new Date());
+    var deadline = new Date(currentTime + timeInMinutes*60*1000);
+    initializeClock('clockdiv', deadline);
+}
